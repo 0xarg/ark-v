@@ -1,0 +1,467 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* Typography: Figma Design System v1 — Instrument Sans + display (Outfit ≈ GC Methane) */
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-ark-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  /* Figma UI kit (node 20:1183) — Inter Bold for buttons; set by next/font on body */
+  --font-button: var(--font-inter), ui-sans-serif, sans-serif;
+  --text-base: 1.125rem;
+  --line-height-base: 1.5;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-ark-brand-red: var(--ark-brand-red);
+  --color-ark-dark-blue-grey: var(--ark-dark-blue-grey);
+  --color-ark-black: var(--ark-black);
+  --color-ark-white: var(--ark-white);
+  --color-ark-light-grey: var(--ark-light-grey);
+  --color-ark-muted-blue-grey: var(--ark-muted-blue-grey);
+  --color-ark-red-50: var(--ark-red-50);
+  --color-ark-red-100: var(--ark-red-100);
+  --color-ark-red-200: var(--ark-red-200);
+  --color-ark-red-300: var(--ark-red-300);
+  --color-ark-red-400: var(--ark-red-400);
+  --color-ark-red-500: var(--ark-red-500);
+  --color-ark-red-600: var(--ark-red-600);
+  --color-ark-red-700: var(--ark-red-700);
+  --color-ark-red-800: var(--ark-red-800);
+  --color-ark-red-900: var(--ark-red-900);
+  --color-ark-blue-50: var(--ark-blue-50);
+  --color-ark-blue-100: var(--ark-blue-100);
+  --color-ark-blue-200: var(--ark-blue-200);
+  --color-ark-blue-300: var(--ark-blue-300);
+  --color-ark-blue-400: var(--ark-blue-400);
+  --color-ark-blue-500: var(--ark-blue-500);
+  --color-ark-blue-600: var(--ark-blue-600);
+  --color-ark-blue-700: var(--ark-blue-700);
+  --color-ark-blue-800: var(--ark-blue-800);
+  --color-ark-blue-900: var(--ark-blue-900);
+
+  --shadow-input:
+    0px 2px 3px -1px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px rgba(25, 28, 33, 0.02),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Landing easing tokens */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* ARKHV primitives — Figma Color Design System */
+  --ark-brand-red: #ff0000;
+  --ark-dark-blue-grey: #2f3744;
+  --ark-black: #222222;
+  --ark-white: #ffffff;
+  --ark-light-grey: #eaebec;
+  --ark-muted-blue-grey: #444b57;
+
+  --ark-red-50: #ffe6e6;
+  --ark-red-100: #ffb0b0;
+  --ark-red-200: #ff8a8a;
+  --ark-red-300: #ff5454;
+  --ark-red-400: #ff3333;
+  --ark-red-500: #ff0000;
+  --ark-red-600: #e80000;
+  --ark-red-700: #b50000;
+  --ark-red-800: #8c0000;
+  --ark-red-900: #6b0000;
+
+  --ark-blue-50: #eaebec;
+  --ark-blue-100: #bfc1c5;
+  --ark-blue-200: #9fa3a9;
+  --ark-blue-300: #747982;
+  --ark-blue-400: #595f69;
+  --ark-blue-500: #2f3744;
+  --ark-blue-600: #2b323e;
+  --ark-blue-700: #212730;
+  --ark-blue-800: #1a1e25;
+  --ark-blue-900: #14171d;
+
+  /* Semantic tokens — all reference Figma palette */
+  --background: var(--ark-white);
+  --foreground: var(--ark-black);
+  --card: var(--ark-white);
+  --card-foreground: var(--ark-black);
+  --popover: var(--ark-white);
+  --popover-foreground: var(--ark-black);
+  --primary: var(--ark-brand-red);
+  --primary-foreground: var(--ark-white);
+  --secondary: var(--ark-light-grey);
+  --secondary-foreground: var(--ark-dark-blue-grey);
+  --muted: var(--ark-light-grey);
+  --muted-foreground: var(--ark-muted-blue-grey);
+  --accent: var(--ark-blue-100);
+  --accent-foreground: var(--ark-black);
+  --destructive: var(--ark-red-600);
+  --border: var(--ark-blue-200);
+  --input: var(--ark-blue-200);
+  --ring: var(--ark-blue-400);
+}
+
+.dark {
+  --background: var(--ark-blue-900);
+  --foreground: var(--ark-white);
+  --card: var(--ark-blue-800);
+  --card-foreground: var(--ark-white);
+  --popover: var(--ark-blue-800);
+  --popover-foreground: var(--ark-white);
+  --primary: var(--ark-brand-red);
+  --primary-foreground: var(--ark-white);
+  --secondary: var(--ark-blue-700);
+  --secondary-foreground: var(--ark-white);
+  --muted: var(--ark-blue-800);
+  --muted-foreground: var(--ark-blue-200);
+  --accent: var(--ark-blue-700);
+  --accent-foreground: var(--ark-white);
+  --destructive: var(--ark-red-500);
+  --border: var(--ark-blue-700);
+  --input: var(--ark-blue-600);
+  --ring: var(--ark-blue-300);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans text-base;
+    font-variation-settings: "wdth" 100;
+  }
+}
+
+/**
+ * ARKHV type scale — Figma node 11:39 (letter-spacing as em ≈ Figma %)
+ * Headings use font-display (Outfit); UI text uses Instrument Sans (font-sans).
+ */
+@layer components {
+  .ark-h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 6rem;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+  .ark-h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 3.75rem;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+  }
+  .ark-h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+  .ark-subtitle-1 {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 2.125rem;
+    line-height: 1.2;
+    letter-spacing: 0.0025em;
+    font-variation-settings: "wdth" 100;
+  }
+  .ark-subtitle-2 {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: 0;
+    font-variation-settings: "wdth" 100;
+  }
+  .ark-body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-variation-settings: "wdth" 100;
+  }
+  .ark-button-text {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    letter-spacing: 0.0125em;
+    text-transform: uppercase;
+  }
+  .ark-caption {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.004em;
+    font-variation-settings: "wdth" 100;
+  }
+  .ark-overline {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    font-variation-settings: "wdth" 100;
+  }
+
+  /**
+   * DS section label — Figma node 76:2445 / 76:2462 (“Input Field” on Selections artboard)
+   * Instrument Sans Regular, 82px, #3e3e3e, tracking −1.23px
+   */
+  .ark-ds-category-title {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6.5vw, 5.125rem);
+    line-height: normal;
+    letter-spacing: -1.23px;
+    color: #3e3e3e;
+    font-variation-settings: "wdth" 100;
+  }
+
+  /** DS page titles — Figma frame 1:2 (“Color design system”, “Logo”) */
+  .ark-ds-mega-title {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(3rem, 10vw, 8rem);
+    line-height: normal;
+    letter-spacing: -1.92px;
+    color: #3e3e3e;
+    font-variation-settings: "wdth" 100;
+  }
+
+  /* Landing UI primitives */
+  .landing-shell {
+    @apply mx-auto w-full max-w-[1620px] px-6 md:px-8;
+  }
+  .landing-section {
+    @apply py-20 md:py-24;
+  }
+  .landing-h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .landing-subtitle {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(1rem, 1.15vw, 1.125rem);
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+  .landing-nav-link {
+    @apply cursor-pointer text-sm font-medium text-white/75;
+    transition: color 180ms var(--ease-out), background-color 180ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .landing-nav-link:hover {
+      color: white;
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+  .landing-link {
+    @apply cursor-pointer;
+    transition: color 180ms var(--ease-out), opacity 180ms var(--ease-out);
+  }
+  .landing-pill-btn {
+    @apply inline-flex h-12 cursor-pointer items-center justify-center rounded-full border px-6 text-sm font-semibold;
+    transition: transform 160ms var(--ease-out), background-color 180ms var(--ease-out), border-color 180ms var(--ease-out), color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .landing-pill-btn:hover {
+      transform: translateY(-1px);
+    }
+  }
+  .landing-pill-btn:active {
+    transform: scale(0.97);
+  }
+  .landing-pill-btn-primary {
+    @apply border-ark-red-600 bg-[#280708] text-ark-red-300 shadow-[0px_10px_28px_rgba(255,0,0,0.28)] hover:border-ark-red-500 hover:bg-[rgba(255,0,0,0.12)] hover:text-ark-red-100;
+  }
+  .landing-pill-btn-secondary-dark {
+    @apply border-white/20 bg-white/6 text-white shadow-[0px_4px_14px_rgba(0,0,0,0.04)] hover:border-white/35 hover:bg-white/12;
+  }
+  .landing-pill-btn-secondary-light {
+    @apply border-[rgba(15,16,18,0.24)] bg-white text-[#0F1012] hover:border-[rgba(15,16,18,0.4)] hover:bg-[#F8F8F8];
+  }
+  .landing-input {
+    @apply h-12 w-full rounded-full border border-white/14 bg-white/6 px-6 text-base text-white placeholder:text-white/45 outline-none transition-colors focus:border-ark-red-500/65;
+  }
+}
+
+/* Landing ticker — Figma `1021:7352` */
+@keyframes ark-landing-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.landing-marquee-track {
+  width: max-content;
+  animation: ark-landing-marquee 36s linear infinite;
+  will-change: transform;
+}
+
+@keyframes ark-hub-row-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ark-hub-row-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.hub-row-left {
+  width: max-content;
+  animation: ark-hub-row-left 34s linear infinite;
+  will-change: transform;
+}
+
+.hub-row-right {
+  width: max-content;
+  animation: ark-hub-row-right 34s linear infinite;
+  will-change: transform;
+}
+
+/* Hub marquee — pause on row hover, pop on image hover */
+@media (hover: hover) and (pointer: fine) {
+  .hub-row-wrapper:hover .hub-row-left,
+  .hub-row-wrapper:hover .hub-row-right {
+    animation-play-state: paused;
+  }
+  .hub-shot-img:hover {
+    transform: scale(1.04);
+    filter: brightness(1.1);
+    border-color: rgba(255, 255, 255, 0.55) !important;
+    z-index: 10;
+    position: relative;
+  }
+}
+.hub-shot-img {
+  transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
+              filter 200ms cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Scroll-reveal utility */
+@keyframes ark-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ark-reveal {
+  opacity: 0;
+}
+.ark-reveal.is-visible {
+  animation: ark-fade-up 600ms var(--ease-out) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-marquee-track {
+    animation: none;
+  }
+  .hub-row-left,
+  .hub-row-right {
+    animation: none;
+  }
+  .ark-reveal.is-visible {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ── AI Description Enhancer (Emil Kowalski principles) ── */
+
+/* Enter from near-resting state — nothing appears from nothing */
+@keyframes ai-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Fast spinner — perceived speed matters */
+@keyframes ai-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ai-enter {
+  animation: ai-enter 200ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.ai-spinner {
+  animation: ai-spin 550ms linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-enter { animation: none; opacity: 1; }
+  .ai-spinner { animation: none; }
+}
+
+/* Keep waitlist hero inline input dark even with browser autofill */
+.waitlist-inline-input-autofill:-webkit-autofill,
+.waitlist-inline-input-autofill:-webkit-autofill:hover,
+.waitlist-inline-input-autofill:-webkit-autofill:focus,
+.waitlist-inline-input-autofill:-webkit-autofill:active {
+  -webkit-text-fill-color: #d0d0d0;
+  box-shadow: 0 0 0 1000px #0f1012 inset;
+  transition: background-color 9999s ease-out 0s;
+}
